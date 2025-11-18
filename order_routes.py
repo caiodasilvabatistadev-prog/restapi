@@ -1,9 +1,8 @@
-from urllib.request import Request
-
 from fastapi import APIRouter
 
-order_routes = APIRouter(prefix="/order", tags=["order"])
-@order_routes.post("/servicos")
-async def servicos():
-    return {'VOCÊ ENTROU NA ROTA DE SERVIÇOS!'}
+order_router = APIRouter(prefix="/orders",tags=["orders"]
+)
 
+@order_router.get("/")
+async def pedidos():
+    return {"mensagem": "Você está na rota de autenticação","autenticado": False}

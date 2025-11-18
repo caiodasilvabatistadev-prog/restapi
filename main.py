@@ -1,18 +1,23 @@
 from fastapi import FastAPI
-
+from auth_routes import auth_router
+from order_routes import order_router
+from passlib.context import CryptContext
+from dotenv import load_dotenv
+import os
 
 app = FastAPI()
+app.include_router(auth_router)
+app.include_router(order_router)
 
-from auth_routes import auth_routes
-from order_routes import order_routes
+load_dotenv()
 
-
-app.include_router(auth_routes)
-app.include_router(order_routes)
-
+secret_key = os.getenv("SECRET_KEY")
 
 
+bcrypt_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
-#run the program with command
-#on terminal : uvicorn main:app --reload
+
+
+
+
 
